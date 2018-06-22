@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/coreapi/coreapi.csproj",
+                "${workspaceFolder}/api.coreapi/api.coreapi.csproj",
             ],
             "problemMatcher": "$msCompile",
             "group": {
