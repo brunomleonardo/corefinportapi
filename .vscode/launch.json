@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/api-finport/bin/Debug/netcoreapp2.0/api-finport.dll",
+            "program": "${workspaceFolder}/coreapi/bin/Debug/netcoreapp2.1/coreapi.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/api-finport",
+            "cwd": "${workspaceFolder}/coreapi",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

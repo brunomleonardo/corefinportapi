@@ -182,11 +182,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\finportapi\\cmodels.apifinport\\cmodels.apifinport.csproj",
+      "projectUniqueName": "c:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\cmodels.apifinport\\cmodels.apifinport.csproj",
       "projectName": "cmodels.apifinport",
-      "projectPath": "C:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\finportapi\\cmodels.apifinport\\cmodels.apifinport.csproj",
+      "projectPath": "c:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\cmodels.apifinport\\cmodels.apifinport.csproj",
       "packagesPath": "C:\\Users\\bleonardo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\finportapi\\cmodels.apifinport\\obj\\",
+      "outputPath": "c:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\cmodels.apifinport\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
