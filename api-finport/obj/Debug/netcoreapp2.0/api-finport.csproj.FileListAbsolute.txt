@@ -1,0 +1,11 @@
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\obj\Debug\netcoreapp2.0\api-finport.csprojAssemblyReference.cache
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\obj\Debug\netcoreapp2.0\api-finport.csproj.CoreCompileInputs.cache
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\obj\Debug\netcoreapp2.0\api-finport.AssemblyInfoInputs.cache
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\obj\Debug\netcoreapp2.0\api-finport.AssemblyInfo.cs
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\bin\Debug\netcoreapp2.0\api-finport.deps.json
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\bin\Debug\netcoreapp2.0\api-finport.runtimeconfig.json
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\bin\Debug\netcoreapp2.0\api-finport.runtimeconfig.dev.json
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\bin\Debug\netcoreapp2.0\api-finport.dll
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\bin\Debug\netcoreapp2.0\api-finport.pdb
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\obj\Debug\netcoreapp2.0\api-finport.dll
+C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\finportapi\api-finport\obj\Debug\netcoreapp2.0\api-finport.pdb
