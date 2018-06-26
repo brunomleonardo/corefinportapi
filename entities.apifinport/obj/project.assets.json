@@ -5009,24 +5009,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bleonardo\\.nuget\\packages\\": {},
+    "C:\\Users\\b_mig\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
+      "projectUniqueName": "C:\\Users\\b_mig\\Documents\\Trabalho\\MVC\\FinPortWebApp\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
       "projectName": "entities.apifinport",
-      "projectPath": "c:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
-      "packagesPath": "C:\\Users\\bleonardo\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\obj\\",
+      "projectPath": "C:\\Users\\b_mig\\Documents\\Trabalho\\MVC\\FinPortWebApp\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
+      "packagesPath": "C:\\Users\\b_mig\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\b_mig\\Documents\\Trabalho\\MVC\\FinPortWebApp\\corefinportapi\\entities.apifinport\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\bleonardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\b_mig\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
