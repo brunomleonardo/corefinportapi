@@ -22,3 +22,6 @@ namespace api.coreapi
                 .UseStartup<Startup>();
     }
 }
+
+/* "DefaultConnection": "Server=DESKI90ACAD5\\SQLEXPRESSMVC;Initial Catalog=FinPortDb;Trusted_Connection=True;MultipleActiveResultSets=true" */
+  
