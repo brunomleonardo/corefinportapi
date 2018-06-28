@@ -13,5 +13,6 @@ namespace entities.apifinport.Entities
         public int amount { get; set; }
         public decimal totalConverted { get; set; }
         public decimal total { get; set; }
+        public TickerEntity ticker { get; set; }
     }
 }

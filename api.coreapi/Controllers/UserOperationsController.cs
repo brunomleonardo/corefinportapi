@@ -40,5 +40,13 @@ namespace api.coreapi.Controllers
             return _UserOperationBLL.AddOperation(UserOpEntity);
         }
 
+        [Route("useroperations/{userId}"), HttpGet]
+        [Authorize()]
+        [EnableCors("CorsPolicy")]
+        public ActionResult<JResponseEntity<UserOperationHistoryEntity>> GetOperations([FromBody]int UserId)
+        {
+            return _UserOperationBLL.GetUserOperations(UserId);
+        }
+
     }
 }

@@ -37,6 +37,9 @@ namespace dal.apifinport.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Ticker> Tickers { get; set; }
         public DbSet<UserOperationHistory> UserOperationHistories { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<WalletDeposit> WalletDeposits { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
         public override int SaveChanges()
         {
             string UserName = "system.user"; // to validate

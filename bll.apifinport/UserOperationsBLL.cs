@@ -28,5 +28,20 @@ namespace bll.apifinport
             }
             return RObj;
         }
+
+        public JResponseEntity<UserOperationHistoryEntity> GetUserOperations(int UserId)
+        {
+            JResponseEntity<UserOperationHistoryEntity> RObj = new JResponseEntity<UserOperationHistoryEntity>();
+            if (UserId != 0)
+            {
+                RObj = _UserOperationsDAL.GetByUserId(UserId);
+                RObj.Message = "Data returned with success.";
+            }
+            else
+            {
+                RObj.Message = "Invalid User Id.";
+            }
+            return RObj;
+        }
     }
 }
