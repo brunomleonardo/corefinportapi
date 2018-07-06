@@ -1,46 +1,82 @@
 using Microsoft.AspNetCore.Mvc;
-using api.coreapi.Models;
 using System.Linq;
 using System.Collections.Generic;
+using entities.apifinport.Entities;
+using apicore.Controllers;
+using Microsoft.AspNetCore.Cors;
+using System.Security.Claims;
+using Microsoft.Extensions.Options;
+using System;
+using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using utils.apifinport;
+using entities.apifinport.Models;
+using dal.apifinport.Context;
+using bll.apifinport;
+using dal.apifinport.Interfaces;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Schema;
+using System.IO;
 
 namespace api.coreapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly FinPortContext _context;
+        private readonly IOptions<JwtAuthentication> _jwtAuthentication;
+        private readonly UserBLL _UserBLL;
+        private readonly IUserService _UserService;
 
-        public UsersController(FinPortContext context)
+        public UsersController(FinPortContext context, IOptions<JwtAuthentication> jwtAuthentication, IUserService UserService)
         {
-            _context = context;
-            if (_context.Users.Count() == 0)
+            _jwtAuthentication = jwtAuthentication ?? throw new ArgumentNullException(nameof(jwtAuthentication));
+            _UserService = UserService ?? throw new ArgumentException(nameof(UserService));
+            _UserBLL = new UserBLL(_UserService);
+        }
+
+        [HttpPost]
+        [EnableCors("CorsPolicy")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(JResponseEntity<UserEntity>), 200)]
+        public async Task<IActionResult> SignUp([FromBody]UserEntity entity)
+        {
+            JResponseEntity<UserEntity> JResponseEntity = await _UserBLL.SignUpUserAsync(entity);
+            if (JResponseEntity.Status)
             {
-                _context.Users.Add(new Models.User()
-                {
-                    Username = "bleonardo",
-                    FirstName = "Bruno",
-                    LastName = "Leonardo",
-                    Password = "123",
-                    Email = "brunoleonardo1@gmail.com"
-                });
-                _context.SaveChanges();
+                JResponseEntity.AccessToken = LoginToken(new GenerateTokenModel() { Username = JResponseEntity.Data.username, Password = JResponseEntity.Data.password });
             }
+            return Ok(JResponseEntity);
         }
 
-        [HttpGet]
-        public ActionResult<List<User>> GetAll()
+        [HttpPost]
+        [EnableCors("CorsPolicy")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(JResponseEntity<UserEntity>), 200)]
+        public async Task<IActionResult> SignIn([FromBody]UserEntity entity)
         {
-            return _context.Users.ToList();
+            JResponseEntity<UserEntity> JResponseEntity = await _UserBLL.SignInUserAsync(entity.username, entity.password);
+            if (JResponseEntity.Status)
+                JResponseEntity.AccessToken = this.LoginToken(new GenerateTokenModel() { Username = JResponseEntity.Data.username, Password = JResponseEntity.Data.password });
+            return Ok(JResponseEntity);
         }
 
-        [HttpGet("{id}", Name="GetTodo")]
-        public ActionResult<User> GetById(int id){
-            User user = _context.Users.Find(id);
-            if(user == null)
-                return NotFound();
-            return user;
+        public string LoginToken(GenerateTokenModel model)
+        {
+            var token = new JwtSecurityToken(
+                    issuer: _jwtAuthentication.Value.ValidIssuer,
+                    audience: _jwtAuthentication.Value.ValidAudience,
+                    claims: new[] {
+                    new Claim(JwtRegisteredClaimNames.Sub, model.Username),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    },
+                    expires: DateTime.UtcNow.AddDays(30),
+                    notBefore: DateTime.UtcNow,
+                    signingCredentials: _jwtAuthentication.Value.SigningCredentials
+                );
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
     }
 }

@@ -26,7 +26,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0",
-          "cmodels.apifinport": "1.0.0"
+          "entities.apifinport": "1.0.0"
         },
         "runtime": {
           "api.coreapi.dll": {}
@@ -206,12 +206,12 @@
           "Microsoft.NETCore.Platforms": "2.1.0"
         }
       },
-      "cmodels.apifinport/1.0.0": {
+      "entities.apifinport/1.0.0": {
         "runtime": {
-          "cmodels.apifinport.dll": {}
+          "entities.apifinport.dll": {}
         },
         "compile": {
-          "cmodels.apifinport.dll": {}
+          "entities.apifinport.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3214,7 +3214,7 @@
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
-    "cmodels.apifinport/1.0.0": {
+    "entities.apifinport/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
