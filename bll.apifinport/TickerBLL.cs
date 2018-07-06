@@ -1,35 +1,29 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using dal.apifinport.Context;
 using dal.apifinport.DataAccess;
+using dal.apifinport.Interfaces;
 using entities.apifinport.Entities;
-using entities.apifinport.Mappers;
 using utils.apifinport;
 
 namespace bll.apifinport
 {
-    public class TickerBLL
+    public class ProductsBLL
     {
-        private TickerDAL _TickerDALL;
-        public TickerBLL(FinPortContext context)
+        private readonly IProductsService _ProductsService;
+
+        public ProductsBLL(IProductsService ProductsService)
         {
-            _TickerDALL = new TickerDAL(context);
+            _ProductsService = ProductsService ?? throw new ArgumentException(nameof(ProductsService));
         }
 
-        public JResponseEntity<TickerEntity> LoadTickers()
+        public async Task<JResponseEntity<IEnumerable<ProductsEntity>>> FindByTextAsync(string input)
         {
-            JResponseEntity<TickerEntity> RObj = new JResponseEntity<TickerEntity>();
-            CsvJob loaderCsv = new CsvJob(@"C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\CsvFiles\nasdaq_tickers.csv");
-            List<TickerCSVMapper> Tickers = loaderCsv.GetAllTickers();
-            RObj = _TickerDALL.CreatePlus(Tickers);
-            return RObj;
-        }
-
-        public JResponseEntity<TickerEntity> FindByText(string input)
-        {
-            JResponseEntity<TickerEntity> RObj = new JResponseEntity<TickerEntity>();
+            JResponseEntity<IEnumerable<ProductsEntity>> RObj = new JResponseEntity<IEnumerable<ProductsEntity>>();
             if (!string.IsNullOrWhiteSpace(input))
             {
-                RObj = _TickerDALL.GetByText(input);
+                RObj = await _ProductsService.ReadByAbbvAsync(input);
             }
             else
             {

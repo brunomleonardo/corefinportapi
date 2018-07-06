@@ -16,36 +16,43 @@ using entities.apifinport.Models;
 using dal.apifinport.Context;
 using bll.apifinport;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using dal.apifinport.Interfaces;
+using System.Threading.Tasks;
 
 namespace api.coreapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class UserOperationsController : BaseController<User>
+    public class UserOperationsController : ControllerBase
     {
         private UserOperationsBLL _UserOperationBLL;
-        public UserOperationsController(FinPortContext context) : base(context)
+        private readonly IUserOperationsService _UserOperationsService;
+
+        public UserOperationsController(IUserOperationsService UserOperationsService)
         {
-            _UserOperationBLL = new UserOperationsBLL(context);
+            _UserOperationsService = UserOperationsService ?? throw new ArgumentException(nameof(UserOperationsService));
+            _UserOperationBLL = new UserOperationsBLL(_UserOperationsService);
         }
 
-        [Route("addoperation"), HttpPost]
+        [HttpPost]
         [Authorize(JwtBearerDefaults.AuthenticationScheme)]
         [EnableCors("CorsPolicy")]
-        public ActionResult<JResponseEntity<UserOperationHistoryEntity>> AddOperation([FromBody]UserOperationHistoryEntity UsrOEntity)
+        [ProducesResponseType(typeof(JResponseEntity<UserOperationHistoryEntity>), 200)]
+        public async Task<IActionResult> AddOperation([FromBody]UserOperationHistoryEntity UsrOEntity)
         {
-            UserOperationHistory UserOpEntity = (UserOperationHistory)UsrOEntity;
-            UserOpEntity.UserId = UsrOEntity.userId;
-            UserOpEntity.TickerId = UsrOEntity.tickerId;
-            return _UserOperationBLL.AddOperation(UserOpEntity);
+            JResponseEntity<UserOperationHistoryEntity> RObj = await _UserOperationBLL.AddOperation(UsrOEntity);
+            return Ok(RObj);
         }
 
-        [Route("useroperations/{userId}"), HttpGet]
-        [Authorize()]
+        [HttpGet]
+        //[Authorize()]
+        [AllowAnonymous]
         [EnableCors("CorsPolicy")]
-        public ActionResult<JResponseEntity<UserOperationHistoryEntity>> GetOperations([FromBody]int UserId)
+        [ProducesResponseType(typeof(JResponseEntity<UserOperationHistoryEntity>), 200)]
+        public async Task<IActionResult> GetOperations(string userId)
         {
-            return _UserOperationBLL.GetUserOperations(UserId);
+            JResponseEntity<IEnumerable<UserOperationHistoryEntity>> RObj = await _UserOperationBLL.GetUserOperations(Int32.Parse(userId));
+            return Ok(RObj);
         }
 
     }

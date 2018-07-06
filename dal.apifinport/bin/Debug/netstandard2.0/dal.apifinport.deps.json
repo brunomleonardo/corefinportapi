@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "fbb15b99ab2f4c5cd37894b87e5bff4de7b9e379"
+    "signature": "19e0f531d74ce814a2f8c5e53ba4d9722e642616"
   },
   "compilationOptions": {},
   "targets": {
@@ -13,6 +13,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.1",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.1",
           "NETStandard.Library": "2.0.3",
+          "SonarAnalyzer.CSharp": "7.3.0.5690",
           "entities.apifinport": "1.0.0"
         },
         "runtime": {
@@ -414,6 +415,7 @@
       "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni/4.4.0": {},
       "runtime.win-x64.runtime.native.System.Data.SqlClient.sni/4.4.0": {},
       "runtime.win-x86.runtime.native.System.Data.SqlClient.sni/4.4.0": {},
+      "SonarAnalyzer.CSharp/7.3.0.5690": {},
       "System.Buffers/4.4.0": {
         "runtime": {
           "lib/netstandard2.0/System.Buffers.dll": {
@@ -1377,6 +1379,7 @@
       },
       "entities.apifinport/1.0.0": {
         "dependencies": {
+          "SonarAnalyzer.CSharp": "7.3.0.5690",
           "System.ComponentModel.Annotations": "4.5.0",
           "System.IdentityModel.Tokens.Jwt": "5.2.4"
         },
@@ -1727,6 +1730,13 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "SonarAnalyzer.CSharp/7.3.0.5690": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KlqoumvXvFU7+YD+hKP4WtKig6F7oUCfJLp94vjkLLVAmHrXebykbFGi5SccgIyVSifTcyFi0E95J9OgQHP+NQ==",
+      "path": "sonaranalyzer.csharp/7.3.0.5690",
+      "hashPath": "sonaranalyzer.csharp.7.3.0.5690.nupkg.sha512"
     },
     "System.Buffers/4.4.0": {
       "type": "package",

@@ -16,26 +16,32 @@ using entities.apifinport.Models;
 using dal.apifinport.Context;
 using bll.apifinport;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using dal.apifinport.Interfaces;
+using System.Threading.Tasks;
 
 namespace api.coreapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class WalletController : BaseController<User>
+    public class WalletController : ControllerBase
     {
-        private WalletBLL _WalletBLL;
-        public WalletController(FinPortContext context) : base(context)
+        private readonly WalletBLL _WalletBLL;
+        private readonly IWalletService _WalletService;
+
+        public WalletController(IWalletService WalletService)
         {
-            this._WalletBLL = new WalletBLL(context);
+            _WalletService = WalletService ?? throw new ArgumentException(nameof(WalletService));
+            _WalletBLL = new WalletBLL(_WalletService);
         }
 
-        [Route("getwallet/{userId}"), HttpGet]
+        [HttpGet]
         [Authorize(JwtBearerDefaults.AuthenticationScheme)]
         [EnableCors("CorsPolicy")]
-        public ActionResult<JResponseEntity<WalletEntity>> GetWallet(int userId)
+        [ProducesResponseType(typeof(JResponseEntity<WalletEntity>), 200)]
+        public async Task<IActionResult> GetWallet(string userId)
         {
-            // JResponseEntity<WalletDepositsEntity> RObj = new
-            return _WalletBLL.GetWalletData(userId);
+            JResponseEntity<WalletEntity> RObj = await _WalletBLL.GetWalletData(Int32.Parse(userId));
+            return Ok(RObj);
         }
     }
 }

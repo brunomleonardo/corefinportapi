@@ -339,6 +339,9 @@
           }
         }
       },
+      "SonarAnalyzer.CSharp/7.3.0.5690": {
+        "type": "package"
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1389,6 +1392,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "SonarAnalyzer.CSharp": "7.3.0.5690",
           "System.ComponentModel.Annotations": "4.5.0",
           "System.IdentityModel.Tokens.Jwt": "5.2.4"
         },
@@ -1930,6 +1934,20 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "SonarAnalyzer.CSharp/7.3.0.5690": {
+      "sha512": "KlqoumvXvFU7+YD+hKP4WtKig6F7oUCfJLp94vjkLLVAmHrXebykbFGi5SccgIyVSifTcyFi0E95J9OgQHP+NQ==",
+      "type": "package",
+      "path": "sonaranalyzer.csharp/7.3.0.5690",
+      "files": [
+        "analyzers/Google.Protobuf.dll",
+        "analyzers/SonarAnalyzer.CSharp.dll",
+        "analyzers/SonarAnalyzer.dll",
+        "sonaranalyzer.csharp.7.3.0.5690.nupkg.sha512",
+        "sonaranalyzer.csharp.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "System.Collections/4.3.0": {
@@ -5116,6 +5134,7 @@
       "CsvHelper >= 7.1.1",
       "Microsoft.AspNetCore.Cryptography.KeyDerivation >= 2.1.1",
       "NETStandard.Library >= 2.0.3",
+      "SonarAnalyzer.CSharp >= 7.3.0.5690",
       "entities.apifinport >= 1.0.0"
     ]
   },
@@ -5181,6 +5200,10 @@
             "target": "Package",
             "version": "[2.0.3, )",
             "autoReferenced": true
+          },
+          "SonarAnalyzer.CSharp": {
+            "target": "Package",
+            "version": "[7.3.0.5690, )"
           }
         },
         "imports": [

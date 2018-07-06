@@ -1,44 +1,53 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Collections.Generic;
 using entities.apifinport.Entities;
-using apicore.Controllers;
-using entities.apifinport.Models;
-using utils.apifinport;
 using System;
 using Microsoft.AspNetCore.Cors;
-using entities.apifinport.Mappers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using dal.apifinport.Context;
 using bll.apifinport;
+using dal.apifinport.Interfaces;
+using System.Threading.Tasks;
 
 namespace api.coreapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class TickersController : BaseController<Ticker>
+    public class ProductssController : ControllerBase
     {
-        private TickerBLL _TickerBLL;
-        public TickersController(FinPortContext context) : base(context)
+        private readonly ProductsBLL _ProductsBLL;
+        private readonly IProductsService _ProductsService;
+
+        public ProductssController(IProductsService ProductsService) //: base(context)
         {
-            _TickerBLL = new TickerBLL(context);
+            _ProductsService = ProductsService ?? throw new ArgumentNullException(nameof(ProductsService));
+            _ProductsBLL = new ProductsBLL(_ProductsService);
         }
 
-        [Route("loadtickers"), HttpGet]
+        //[Route("loadProductss"), HttpGet]
+        //[Authorize(JwtBearerDefaults.AuthenticationScheme)]
+        //[EnableCors("CorsPolicy")]
+        //public ActionResult<JResponseEntity<ProductsEntity>> LoadProductss()
+        //{
+        //    return _ProductsBLL.LoadProductss();
+        //}
+
+        [Route("{term}"), HttpGet]
         [Authorize(JwtBearerDefaults.AuthenticationScheme)]
         [EnableCors("CorsPolicy")]
-        public ActionResult<JResponseEntity<TickerEntity>> LoadTickers()
+        [ProducesResponseType(typeof(JResponseEntity<IEnumerable<ProductsEntity>>), 200)]
+        public async Task<IActionResult> GetByAbbv([FromRoute]string term)
         {
-            return _TickerBLL.LoadTickers();
+            JResponseEntity<IEnumerable<ProductsEntity>> Response = await _ProductsBLL.FindByTextAsync(term);
+            return Ok(Response);
         }
 
-        [Route("byabbv/{term}"), HttpGet]
-        [Authorize(JwtBearerDefaults.AuthenticationScheme)]
-        [EnableCors("CorsPolicy")]
-        public ActionResult<JResponseEntity<TickerEntity>> GetByAbbv(string term)
-        {
-            return _TickerBLL.FindByText(term);
-        }
+        //[Route("updateprices"), HttpGet]
+        //[Authorize(JwtBearerDefaults.AuthenticationScheme)]
+        //[EnableCors("CorsPolicy")]
+        //public ActionResult<JResponseEntity<string>> UpdateProductsPrices()
+        //{
+        //    return _ProductsBLL.UpdateProductsPrices();
+        //}
     }
 }

@@ -1,24 +1,28 @@
 using dal.apifinport.Context;
 using dal.apifinport.DataAccess;
+using dal.apifinport.Interfaces;
 using entities.apifinport.Entities;
 using entities.apifinport.Models;
+using System;
+using System.Threading.Tasks;
 using utils.apifinport;
 
 namespace bll.apifinport
 {
     public class WalletBLL
     {
-        private WalletDAL _WalletDAL;
-        public WalletBLL(FinPortContext _context)
+        private readonly IWalletService _WalletService;
+
+        public WalletBLL(IWalletService WalletService)
         {
-            this._WalletDAL = new WalletDAL(_context);
+            _WalletService = WalletService ?? throw new ArgumentException(nameof(WalletService));
         }
 
-        public JResponseEntity<WalletEntity> GetWalletData(int userId)
+        public async Task<JResponseEntity<WalletEntity>> GetWalletData(int userId)
         {
             if (userId != 0)
             {
-                return _WalletDAL.GetByUserId(userId);
+                return await _WalletService.ReadOneAsync(userId, null);
             }
             return new JResponseEntity<WalletEntity>();
         }

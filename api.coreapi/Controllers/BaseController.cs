@@ -8,6 +8,8 @@ using System.Linq;
 
 namespace apicore.Controllers
 {
+    [Route("api/[controller]/[action]")]
+    [ApiController]
     public class BaseController<T> : ControllerBase where T : class, IEntity
     {
         private readonly FinPortContext _context;

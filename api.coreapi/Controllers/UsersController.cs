@@ -15,56 +15,52 @@ using utils.apifinport;
 using entities.apifinport.Models;
 using dal.apifinport.Context;
 using bll.apifinport;
+using dal.apifinport.Interfaces;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Schema;
+using System.IO;
 
 namespace api.coreapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class UsersController : BaseController<User>
+    public class UsersController : ControllerBase
     {
         private readonly IOptions<JwtAuthentication> _jwtAuthentication;
-        private UserBLL _UserBLL;
-        public UsersController(FinPortContext context, IOptions<JwtAuthentication> jwtAuthentication) : base(context)
+        private readonly UserBLL _UserBLL;
+        private readonly IUserService _UserService;
+
+        public UsersController(FinPortContext context, IOptions<JwtAuthentication> jwtAuthentication, IUserService UserService)
         {
             _jwtAuthentication = jwtAuthentication ?? throw new ArgumentNullException(nameof(jwtAuthentication));
-            this._UserBLL = new UserBLL(context);
+            _UserService = UserService ?? throw new ArgumentException(nameof(UserService));
+            _UserBLL = new UserBLL(_UserService);
         }
 
-        [Route("signup"), HttpPost]
+        [HttpPost]
         [EnableCors("CorsPolicy")]
         [AllowAnonymous]
-        public ActionResult<JResponseEntity<UserEntity>> SignUp([FromBody]UserEntity entity)
+        [ProducesResponseType(typeof(JResponseEntity<UserEntity>), 200)]
+        public async Task<IActionResult> SignUp([FromBody]UserEntity entity)
         {
-            JResponseEntity<UserEntity> JResponseEntity = new JResponseEntity<UserEntity>();
-            if (ModelState.IsValid)
+            JResponseEntity<UserEntity> JResponseEntity = await _UserBLL.SignUpUserAsync(entity);
+            if (JResponseEntity.Status)
             {
-                User _entity = new User()
-                {
-                    Email = entity.email,
-                    Username = entity.username,
-                    FirstName = entity.first_name,
-                    LastName = entity.last_name,
-                    Password = PasswordHash.Hash(entity.password)
-                };
-                JResponseEntity = this._UserBLL.SignUpUser(_entity);
-                if (JResponseEntity.Status)
-                {
-                    JResponseEntity.AccessToken = LoginToken(new GenerateTokenModel() { Username = _entity.Username, Password = _entity.Password });
-                }
+                JResponseEntity.AccessToken = LoginToken(new GenerateTokenModel() { Username = JResponseEntity.Data.username, Password = JResponseEntity.Data.password });
             }
-            return JResponseEntity;
+            return Ok(JResponseEntity);
         }
 
-        [Route("signin"), HttpPost]
+        [HttpPost]
         [EnableCors("CorsPolicy")]
         [AllowAnonymous]
-        public ActionResult<JResponseEntity<UserEntity>> SignIn([FromBody]UserEntity entity)
+        [ProducesResponseType(typeof(JResponseEntity<UserEntity>), 200)]
+        public async Task<IActionResult> SignIn([FromBody]UserEntity entity)
         {
-            JResponseEntity<UserEntity> JResponseEntity = new JResponseEntity<UserEntity>();
-            JResponseEntity = this._UserBLL.SignInUser(entity);
+            JResponseEntity<UserEntity> JResponseEntity = await _UserBLL.SignInUserAsync(entity.username, entity.password);
             if (JResponseEntity.Status)
                 JResponseEntity.AccessToken = this.LoginToken(new GenerateTokenModel() { Username = JResponseEntity.Data.username, Password = JResponseEntity.Data.password });
-            return JResponseEntity;
+            return Ok(JResponseEntity);
         }
 
         public string LoginToken(GenerateTokenModel model)

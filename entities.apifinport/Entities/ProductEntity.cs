@@ -1,6 +1,6 @@
 namespace entities.apifinport.Entities
 {
-    public class TickerEntity
+    public class ProductsEntity
     {
         public int id { get; set; }
         public string abbv { get; set; }
@@ -13,5 +13,6 @@ namespace entities.apifinport.Entities
         public string industry { get; set; }
         public string market_cap { get; set; }
         public string href { get; set; }
+        public MarketEntity market { get; set; }
     }
 }

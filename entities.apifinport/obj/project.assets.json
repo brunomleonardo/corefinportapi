@@ -314,6 +314,9 @@
           }
         }
       },
+      "SonarAnalyzer.CSharp/7.3.0.5690": {
+        "type": "package"
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1836,6 +1839,20 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "SonarAnalyzer.CSharp/7.3.0.5690": {
+      "sha512": "KlqoumvXvFU7+YD+hKP4WtKig6F7oUCfJLp94vjkLLVAmHrXebykbFGi5SccgIyVSifTcyFi0E95J9OgQHP+NQ==",
+      "type": "package",
+      "path": "sonaranalyzer.csharp/7.3.0.5690",
+      "files": [
+        "analyzers/Google.Protobuf.dll",
+        "analyzers/SonarAnalyzer.CSharp.dll",
+        "analyzers/SonarAnalyzer.dll",
+        "sonaranalyzer.csharp.7.3.0.5690.nupkg.sha512",
+        "sonaranalyzer.csharp.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "System.Collections/4.3.0": {
@@ -5004,6 +5021,7 @@
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "NETStandard.Library >= 2.0.3",
+      "SonarAnalyzer.CSharp >= 7.3.0.5690",
       "System.ComponentModel.Annotations >= 4.5.0",
       "System.IdentityModel.Tokens.Jwt >= 5.2.4"
     ]
@@ -5015,11 +5033,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
+      "projectUniqueName": "C:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
       "projectName": "entities.apifinport",
-      "projectPath": "c:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
+      "projectPath": "C:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
       "packagesPath": "C:\\Users\\bleonardo\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\obj\\",
+      "outputPath": "C:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5054,6 +5072,10 @@
             "target": "Package",
             "version": "[2.0.3, )",
             "autoReferenced": true
+          },
+          "SonarAnalyzer.CSharp": {
+            "target": "Package",
+            "version": "[7.3.0.5690, )"
           },
           "System.ComponentModel.Annotations": {
             "target": "Package",

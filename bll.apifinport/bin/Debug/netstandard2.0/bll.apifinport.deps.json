@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "94865c134d50ed29e9ee23aa58bcb0aed2ab6e2e"
+    "signature": "d267d1a84e6fa7282f480964008fc0e2eaa0c673"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,6 +11,7 @@
         "dependencies": {
           "CsvHelper": "7.1.1",
           "NETStandard.Library": "2.0.3",
+          "SonarAnalyzer.CSharp": "7.3.0.5690",
           "dal.apifinport": "1.0.0",
           "entities.apifinport": "1.0.0",
           "utils.apifinport": "1.0.0"
@@ -441,6 +442,7 @@
       "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni/4.4.0": {},
       "runtime.win-x64.runtime.native.System.Data.SqlClient.sni/4.4.0": {},
       "runtime.win-x86.runtime.native.System.Data.SqlClient.sni/4.4.0": {},
+      "SonarAnalyzer.CSharp/7.3.0.5690": {},
       "System.Buffers/4.4.0": {
         "runtime": {
           "lib/netstandard2.0/System.Buffers.dll": {
@@ -1407,6 +1409,7 @@
           "CsvHelper": "7.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.1",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.1",
+          "SonarAnalyzer.CSharp": "7.3.0.5690",
           "entities.apifinport": "1.0.0"
         },
         "runtime": {
@@ -1415,6 +1418,7 @@
       },
       "entities.apifinport/1.0.0": {
         "dependencies": {
+          "SonarAnalyzer.CSharp": "7.3.0.5690",
           "System.ComponentModel.Annotations": "4.5.0",
           "System.IdentityModel.Tokens.Jwt": "5.2.4"
         },
@@ -1427,6 +1431,7 @@
           "BCrypt-Official": "0.1.109",
           "CsvHelper": "7.1.1",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "2.1.1",
+          "SonarAnalyzer.CSharp": "7.3.0.5690",
           "entities.apifinport": "1.0.0"
         },
         "runtime": {
@@ -1797,6 +1802,13 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "SonarAnalyzer.CSharp/7.3.0.5690": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KlqoumvXvFU7+YD+hKP4WtKig6F7oUCfJLp94vjkLLVAmHrXebykbFGi5SccgIyVSifTcyFi0E95J9OgQHP+NQ==",
+      "path": "sonaranalyzer.csharp/7.3.0.5690",
+      "hashPath": "sonaranalyzer.csharp.7.3.0.5690.nupkg.sha512"
     },
     "System.Buffers/4.4.0": {
       "type": "package",

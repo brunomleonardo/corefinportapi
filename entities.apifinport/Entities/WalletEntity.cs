@@ -10,5 +10,14 @@ namespace entities.apifinport.Entities
         public int currencyId { get; set; }
         public CurrencyEntity currency { get; set; }
         public List<WalletDepositsEntity> deposits { get; set; }
+        public WalletEntity()
+        {
+            amount = 0;
+            currency = new CurrencyEntity()
+            {
+                symbol = "€"
+            };
+            deposits = new List<WalletDepositsEntity>();
+        }
     }
 }

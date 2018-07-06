@@ -1,54 +1,67 @@
 using dal.apifinport.Context;
 using dal.apifinport.DataAccess;
+using dal.apifinport.Interfaces;
 using entities.apifinport.Entities;
 using entities.apifinport.Models;
+using Newtonsoft.Json.Schema;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using utils.apifinport;
 
 namespace bll.apifinport
 {
     public class UserBLL
     {
-        private UserDAL _UserDAL;
-        public UserBLL(FinPortContext _context)
+        private readonly IUserService _UserService;
+        public UserBLL(IUserService UserService)
         {
-            this._UserDAL = new UserDAL(_context);
+            _UserService = UserService ?? throw new ArgumentException(nameof(UserService));
         }
 
-        public JResponseEntity<UserEntity> SignUpUser(User Entity)
+        public async Task<JResponseEntity<UserEntity>> SignUpUserAsync(UserEntity Entity)
         {
             JResponseEntity<UserEntity> RObj = new JResponseEntity<UserEntity>();
             if (Entity != null
-                && !string.IsNullOrWhiteSpace(Entity.Username)
-                && !string.IsNullOrWhiteSpace(Entity.Email)
-                && !string.IsNullOrWhiteSpace(Entity.Password))
+                && !string.IsNullOrWhiteSpace(Entity.username)
+                && !string.IsNullOrWhiteSpace(Entity.email)
+                && !string.IsNullOrWhiteSpace(Entity.password))
             {
-                JResponseEntity<UserEntity> UsrByName = new JResponseEntity<UserEntity>();
-                UsrByName = this._UserDAL.GetByText(Entity.Username);
-                if (UsrByName.Status)
+                JResponseEntity<UserEntity> UsrByName = null;
+                UsrByName = await _UserService.ReadOneAsync(0, Entity.username);
+                if (UsrByName.Status && UsrByName.Data != null)
                 {
                     RObj.Message = "Username already exists.";
                 }
                 else
                 {
-                    RObj = this._UserDAL.Create(Entity);
+                    Users _entity = new Users()
+                    {
+                        Email = Entity.email,
+                        Username = Entity.username,
+                        FirstName = Entity.first_name,
+                        LastName = Entity.last_name,
+                        Password = PasswordHash.Hash(Entity.password)
+                    };
+
+                    RObj = await _UserService.CreateAsync(_entity);
                     RObj.Message = "User Created Successfully!";
                 }
             }
             return RObj;
         }
 
-        public JResponseEntity<UserEntity> SignInUser(UserEntity Entity)
+        public async Task<JResponseEntity<UserEntity>> SignInUserAsync(string username, string password)
         {
             JResponseEntity<UserEntity> RObj = new JResponseEntity<UserEntity>();
-            if (Entity != null
-                && !string.IsNullOrWhiteSpace(Entity.username)
-                && !string.IsNullOrWhiteSpace(Entity.password))
+            if (!string.IsNullOrWhiteSpace(username)
+                && !string.IsNullOrWhiteSpace(password))
             {
-                JResponseEntity<UserEntity> UsrByName = new JResponseEntity<UserEntity>();
-                UsrByName = this._UserDAL.GetByText(Entity.username);
+                JResponseEntity<UserEntity> UsrByName = null;
+                UsrByName = await _UserService.ReadOneAsync(0, username);
                 if (UsrByName.Status)
                 {
-                    bool isPwdValid = PasswordHash.IsPasswordValid(UsrByName.Data.password, Entity.password);
+                    bool isPwdValid = PasswordHash.IsPasswordValid(UsrByName.Data.password, password);
                     if (isPwdValid)
                     {
                         RObj.Message = "Login success.";
