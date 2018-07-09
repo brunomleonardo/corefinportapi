@@ -22,3 +22,15 @@ C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\dal.apifinport\obj
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.csproj.CopyComplete
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.dll
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.pdb
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\bin\Debug\netstandard2.0\dal.apifinport.deps.json
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\bin\Debug\netstandard2.0\dal.apifinport.dll
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\bin\Debug\netstandard2.0\dal.apifinport.pdb
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\bin\Debug\netstandard2.0\entities.apifinport.dll
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\bin\Debug\netstandard2.0\entities.apifinport.pdb
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.csprojResolveAssemblyReference.cache
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.csproj.CoreCompileInputs.cache
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.AssemblyInfoInputs.cache
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.AssemblyInfo.cs
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.csproj.CopyComplete
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.dll
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\dal.apifinport\obj\Debug\netstandard2.0\dal.apifinport.pdb

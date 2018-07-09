@@ -16,3 +16,12 @@ C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\entities.apifinpor
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\entities.apifinport\obj\Debug\netstandard2.0\entities.apifinport.dll
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\entities.apifinport\obj\Debug\netstandard2.0\entities.apifinport.pdb
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\entities.apifinport\obj\Debug\netstandard2.0\entities.apifinport.csprojAssemblyReference.cache
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\entities.apifinport\bin\Debug\netstandard2.0\entities.apifinport.deps.json
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\entities.apifinport\bin\Debug\netstandard2.0\entities.apifinport.dll
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\entities.apifinport\bin\Debug\netstandard2.0\entities.apifinport.pdb
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\entities.apifinport\obj\Debug\netstandard2.0\entities.apifinport.csprojResolveAssemblyReference.cache
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\entities.apifinport\obj\Debug\netstandard2.0\entities.apifinport.csproj.CoreCompileInputs.cache
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\entities.apifinport\obj\Debug\netstandard2.0\entities.apifinport.AssemblyInfoInputs.cache
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\entities.apifinport\obj\Debug\netstandard2.0\entities.apifinport.AssemblyInfo.cs
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\entities.apifinport\obj\Debug\netstandard2.0\entities.apifinport.dll
+C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\entities.apifinport\obj\Debug\netstandard2.0\entities.apifinport.pdb

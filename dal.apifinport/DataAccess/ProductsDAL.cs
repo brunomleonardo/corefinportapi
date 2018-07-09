@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using dal.apifinport.Context;
 using dal.apifinport.Interfaces;
-using entities.apifinport.Entities;
+using entities.apifinport.DtoModels;
 using entities.apifinport.Models;
 
 namespace dal.apifinport.DataAccess

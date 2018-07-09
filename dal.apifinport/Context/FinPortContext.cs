@@ -1,5 +1,5 @@
 
-using entities.apifinport.Entities;
+using entities.apifinport.DtoModels;
 using entities.apifinport.Models;
 using Microsoft.EntityFrameworkCore;
 using System;

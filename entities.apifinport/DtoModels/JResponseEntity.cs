@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace entities.apifinport.Entities
+namespace entities.apifinport.DtoModels
 {
     public class JResponseEntity<T> where T : class
     {

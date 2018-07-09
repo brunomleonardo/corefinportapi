@@ -2,7 +2,7 @@
 using System;
 using entities.apifinport.Interfaces;
 
-namespace entities.apifinport.Entities
+namespace entities.apifinport.DtoModels
 {
     public abstract class BaseEntity : IEntity
     {

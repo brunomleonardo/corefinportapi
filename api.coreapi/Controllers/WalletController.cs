@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Collections.Generic;
-using entities.apifinport.Entities;
+using entities.apifinport.DtoModels;
 using apicore.Controllers;
 using Microsoft.AspNetCore.Cors;
 using System.Security.Claims;

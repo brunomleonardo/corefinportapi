@@ -1,5 +1,5 @@
 using dal.apifinport.Context;
-using entities.apifinport.Entities;
+using entities.apifinport.DtoModels;
 using entities.apifinport.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

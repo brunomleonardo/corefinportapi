@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using dal.apifinport.Context;
 using dal.apifinport.DataAccess;
 using dal.apifinport.Interfaces;
-using entities.apifinport.Entities;
+using entities.apifinport.DtoModels;
 using entities.apifinport.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
