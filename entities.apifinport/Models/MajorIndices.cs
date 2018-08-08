@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebApplication1.Models
+namespace FinPort.Entities.Models
 {
     public partial class MajorIndices
     {
@@ -13,5 +13,7 @@ namespace WebApplication1.Models
         public bool Deleted { get; set; }
         public string Designation { get; set; }
         public int? TechnicalValueId { get; set; }
+
+        public TechnicalValues TechnicalValue { get; set; }
     }
 }

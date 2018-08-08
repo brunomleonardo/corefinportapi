@@ -5,14 +5,15 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using entities.apifinport.DtoModels.Infrastructure;
-using entities.apifinport.Models;
+using FinPort.Entities;
 
 namespace entities.apifinport.DtoModels
 {
-    public class TechnicalValuesDTO : BaseEntityDTO
+    public class TechnicalValuesDTO
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
+        public int TechnicalValueId { get; set; }
         public decimal? Last { get; set; }
         public decimal? High { get; set; }
         public decimal? Low { get; set; }
@@ -24,16 +25,16 @@ namespace entities.apifinport.DtoModels
         public decimal? PrfYtd { get; set; }
         public decimal? Prf1Years { get; set; }
         public decimal? Prf3Years { get; set; }
-        public int? ProductId { get; set; }
-        public string MajorIndiceDesignation { get; set; }
-        public int? MajorIndiceId { get; set; }
+        public IEnumerable<MajorIndicesDTO> MajorIndices { get; set; }
+        public IEnumerable<ProductsDTO> Products { get; set; }
     }
 
     public class TechnicalValuesMapper : MapperBase<TechnicalValues, TechnicalValuesDTO>
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
-        private BaseEntityMapper _baseEntityMapper = new BaseEntityMapper();
+        private MajorIndicesMapper _majorIndicesMapper = new MajorIndicesMapper();
+        private ProductsMapper _productsMapper = new ProductsMapper();
         public override Expression<Func<TechnicalValues, TechnicalValuesDTO>> SelectorExpression
         {
             get
@@ -42,6 +43,7 @@ namespace entities.apifinport.DtoModels
                 {
                     ////BCC/ BEGIN CUSTOM CODE SECTION 
                     ////ECC/ END CUSTOM CODE SECTION 
+                    TechnicalValueId = p.TechnicalValueId,
                     Last = p.Last,
                     High = p.High,
                     Low = p.Low,
@@ -53,10 +55,9 @@ namespace entities.apifinport.DtoModels
                     PrfYtd = p.PrfYtd,
                     Prf1Years = p.Prf1Years,
                     Prf3Years = p.Prf3Years,
-                    ProductId = p.ProductId,
-                    MajorIndiceDesignation = p.MajorIndice != null ? p.MajorIndice.Designation : default(string),
-                    MajorIndiceId = p.MajorIndice != null ? p.MajorIndice.Id : default(int),
-                })).MergeWith(this._baseEntityMapper.SelectorExpression);
+                    MajorIndices = p.MajorIndices.AsQueryable().Select(this._majorIndicesMapper.SelectorExpression),
+                    Products = p.Products.AsQueryable().Select(this._productsMapper.SelectorExpression)
+                }));
             }
         }
 
@@ -64,6 +65,7 @@ namespace entities.apifinport.DtoModels
         {
             ////BCC/ BEGIN CUSTOM CODE SECTION 
             ////ECC/ END CUSTOM CODE SECTION 
+            model.TechnicalValueId = dto.TechnicalValueId;
             model.Last = dto.Last;
             model.High = dto.High;
             model.Low = dto.Low;
@@ -75,9 +77,6 @@ namespace entities.apifinport.DtoModels
             model.PrfYtd = dto.PrfYtd;
             model.Prf1Years = dto.Prf1Years;
             model.Prf3Years = dto.Prf3Years;
-            model.MajorIndiceId = dto.MajorIndiceId;
-            model.ProductId = dto.ProductId;
-            this._baseEntityMapper.MapToModel(dto, model);
         }
     }
 }

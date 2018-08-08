@@ -9,9 +9,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0-msbuild3-final" />
   </ItemGroup> -->
 <ItemGroup>
-    <ProjectReference Include="..\entities.apifinport\entities.apifinport.csproj" />
     <ProjectReference Include="..\dal.apifinport\dal.apifinport.csproj" />
-        <ProjectReference Include="..\utils.apifinport\utils.apifinport.csproj" />
   </ItemGroup>
 <ItemGroup>
   <PackageReference Include="CsvHelper" Version="7.1.1" />

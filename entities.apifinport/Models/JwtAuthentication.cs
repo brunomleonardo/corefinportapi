@@ -1,7 +1,7 @@
 using System;
 using Microsoft.IdentityModel.Tokens;
 
-namespace entities.apifinport.Models
+namespace FinPort.Entities.Models
 {
     public class JwtAuthentication
     {

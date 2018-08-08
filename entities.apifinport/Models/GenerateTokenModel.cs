@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace entities.apifinport.Models
+namespace FinPort.Entities.Models
 {
     public class GenerateTokenModel
     {

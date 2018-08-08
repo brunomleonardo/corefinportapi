@@ -5027,27 +5027,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\b_mig\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\bleonardo\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\b_mig\\Documents\\Trabalho\\AngularApps\\api\\finportapi\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
-      "projectName": "entities.apifinport",
-      "projectPath": "C:\\Users\\b_mig\\Documents\\Trabalho\\AngularApps\\api\\finportapi\\corefinportapi\\entities.apifinport\\entities.apifinport.csproj",
-      "packagesPath": "C:\\Users\\b_mig\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\b_mig\\Documents\\Trabalho\\AngularApps\\api\\finportapi\\corefinportapi\\entities.apifinport\\obj\\",
+      "projectUniqueName": "C:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\FinPort.Entites.csproj",
+      "projectName": "FinPort.Entites",
+      "projectPath": "C:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\FinPort.Entites.csproj",
+      "packagesPath": "C:\\Users\\bleonardo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\bleonardo\\Desktop\\Work\\STUFF_CORE_AJS\\corefinportapi\\entities.apifinport\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\b_mig\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\bleonardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"

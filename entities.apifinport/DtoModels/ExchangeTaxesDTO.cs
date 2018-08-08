@@ -5,24 +5,27 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using entities.apifinport.DtoModels.Infrastructure;
-using entities.apifinport.Models;
+using FinPort.Entities;
 
 namespace entities.apifinport.DtoModels
 {
-    public class ExchangeTaxesDTO : BaseEntityDTO
+    public class ExchangeTaxesDTO
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
         public decimal TaxValue { get; set; }
-        public int MajorIndiceId { get; set; }
-        public string MajorIndiceDesignation { get; set; }
+        public string ExchangeTaxDesignation { get; set; }
+        public string ExchangeTaxSymbol { get; set; }
+        public string ExchangeTaxCurrencySymbol { get; set; }
+        public string ExchangeTaxCurrencyDesignation { get; set; }
+        public string ExchangeTaxCurrencyName { get; set; }
+        public decimal ExchangeTaxExchangeTaxesTaxValue { get; set; }
     }
 
     public class ExchangeTaxesMapper : MapperBase<ExchangeTaxes, ExchangeTaxesDTO>
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
-        private BaseEntityMapper _baseEntityMapper = new BaseEntityMapper();
         public override Expression<Func<ExchangeTaxes, ExchangeTaxesDTO>> SelectorExpression
         {
             get
@@ -32,9 +35,13 @@ namespace entities.apifinport.DtoModels
                     ////BCC/ BEGIN CUSTOM CODE SECTION 
                     ////ECC/ END CUSTOM CODE SECTION 
                     TaxValue = p.TaxValue,
-                    MajorIndiceDesignation = p.MajorIndice != null ? p.MajorIndice.Designation : default(string),
-                    MajorIndiceId = p.MajorIndice != null ? p.MajorIndice.Id : default(int),
-                })).MergeWith(this._baseEntityMapper.SelectorExpression);
+                    ExchangeTaxDesignation = p.ExchangeTax != null ? p.ExchangeTax.Designation : default(string),
+                    ExchangeTaxSymbol = p.ExchangeTax != null ? p.ExchangeTax.Symbol : default(string),
+                    ExchangeTaxCurrencySymbol = p.ExchangeTax != null && p.ExchangeTax.Currency != null ? p.ExchangeTax.Currency.Symbol : default(string),
+                    ExchangeTaxCurrencyDesignation = p.ExchangeTax != null && p.ExchangeTax.Currency != null ? p.ExchangeTax.Currency.Designation : default(string),
+                    ExchangeTaxCurrencyName = p.ExchangeTax != null && p.ExchangeTax.Currency != null ? p.ExchangeTax.Currency.Name : default(string),
+                    ExchangeTaxExchangeTaxesTaxValue = p.ExchangeTax != null && p.ExchangeTax.ExchangeTaxes != null ? p.ExchangeTax.ExchangeTaxes.TaxValue : default(decimal)
+                }));
             }
         }
 
@@ -43,8 +50,6 @@ namespace entities.apifinport.DtoModels
             ////BCC/ BEGIN CUSTOM CODE SECTION 
             ////ECC/ END CUSTOM CODE SECTION 
             model.TaxValue = dto.TaxValue;
-            model.MajorIndiceId = dto.MajorIndiceId;
-            this._baseEntityMapper.MapToModel(dto, model);
         }
     }
 }

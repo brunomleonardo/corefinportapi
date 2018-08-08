@@ -13,13 +13,10 @@ C:\Users\b_mig\Documents\Trabalho\MVC\FinPortWebApp\corefinportapi\utils.apifinp
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\bin\Debug\netstandard2.0\utils.apifinport.deps.json
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\bin\Debug\netstandard2.0\utils.apifinport.dll
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\bin\Debug\netstandard2.0\utils.apifinport.pdb
-C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\bin\Debug\netstandard2.0\entities.apifinport.dll
-C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\bin\Debug\netstandard2.0\entities.apifinport.pdb
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\obj\Debug\netstandard2.0\utils.apifinport.csprojAssemblyReference.cache
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\obj\Debug\netstandard2.0\utils.apifinport.csproj.CoreCompileInputs.cache
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\obj\Debug\netstandard2.0\utils.apifinport.AssemblyInfoInputs.cache
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\obj\Debug\netstandard2.0\utils.apifinport.AssemblyInfo.cs
-C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\obj\Debug\netstandard2.0\utils.apifinport.csproj.CopyComplete
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\obj\Debug\netstandard2.0\utils.apifinport.dll
 C:\Users\bleonardo\Desktop\Work\STUFF_CORE_AJS\corefinportapi\utils.apifinport\obj\Debug\netstandard2.0\utils.apifinport.pdb
 C:\Users\b_mig\Documents\Trabalho\AngularApps\api\finportapi\corefinportapi\utils.apifinport\bin\Debug\netstandard2.0\utils.apifinport.deps.json

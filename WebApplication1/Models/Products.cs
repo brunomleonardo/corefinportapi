@@ -8,6 +8,7 @@ namespace WebApplication1.Models
         public Products()
         {
             ExchangeProducts = new HashSet<ExchangeProducts>();
+            MarketProducts = new HashSet<MarketProducts>();
             UserOperationHistories = new HashSet<UserOperationHistories>();
         }
 
@@ -25,10 +26,12 @@ namespace WebApplication1.Models
         public string Sector { get; set; }
         public string Industry { get; set; }
         public string MarketCap { get; set; }
-        public string Href { get; set; }
         public int? TechnicalValueId { get; set; }
+        public string Href { get; set; }
 
+        public TechnicalValues TechnicalValue { get; set; }
         public ICollection<ExchangeProducts> ExchangeProducts { get; set; }
+        public ICollection<MarketProducts> MarketProducts { get; set; }
         public ICollection<UserOperationHistories> UserOperationHistories { get; set; }
     }
 }

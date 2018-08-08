@@ -5,22 +5,23 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using entities.apifinport.DtoModels.Infrastructure;
-using entities.apifinport.Models;
+using FinPort.Entities;
 
 namespace entities.apifinport.DtoModels
 {
-    public class MajorIndicesDTO : BaseEntityDTO
+    public class MajorIndicesDTO
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
+        public int MajorIndiceId { get; set; }
         public string Designation { get; set; }
+        public decimal? TechnicalValueLast { get; set; }
     }
 
     public class MajorIndicesMapper : MapperBase<MajorIndices, MajorIndicesDTO>
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
-        private BaseEntityMapper _baseEntityMapper = new BaseEntityMapper();
         public override Expression<Func<MajorIndices, MajorIndicesDTO>> SelectorExpression
         {
             get
@@ -29,8 +30,10 @@ namespace entities.apifinport.DtoModels
                 {
                     ////BCC/ BEGIN CUSTOM CODE SECTION 
                     ////ECC/ END CUSTOM CODE SECTION 
+                    MajorIndiceId = p.MajorIndiceId,
                     Designation = p.Designation,
-                })).MergeWith(this._baseEntityMapper.SelectorExpression);
+                    TechnicalValueLast = p.TechnicalValue != null ? p.TechnicalValue.Last : default(decimal?)
+                }));
             }
         }
 
@@ -38,8 +41,8 @@ namespace entities.apifinport.DtoModels
         {
             ////BCC/ BEGIN CUSTOM CODE SECTION 
             ////ECC/ END CUSTOM CODE SECTION 
+            model.MajorIndiceId = dto.MajorIndiceId;
             model.Designation = dto.Designation;
-            this._baseEntityMapper.MapToModel(dto, model);
         }
     }
 }

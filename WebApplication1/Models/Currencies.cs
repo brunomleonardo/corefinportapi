@@ -8,6 +8,7 @@ namespace WebApplication1.Models
         public Currencies()
         {
             Exchanges = new HashSet<Exchanges>();
+            Wallets = new HashSet<Wallets>();
         }
 
         public int CurrencyId { get; set; }
@@ -20,7 +21,7 @@ namespace WebApplication1.Models
         public string Designation { get; set; }
         public string Name { get; set; }
 
-        public Wallets Wallets { get; set; }
         public ICollection<Exchanges> Exchanges { get; set; }
+        public ICollection<Wallets> Wallets { get; set; }
     }
 }

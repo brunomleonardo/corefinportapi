@@ -5,20 +5,22 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using entities.apifinport.DtoModels.Infrastructure;
-using entities.apifinport.Models;
+using FinPort.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace entities.apifinport.DtoModels
 {
-    public class CurrenciesDTO : BaseEntityDTO
+    public class CurrenciesDTO
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
         public string Symbol { get; set; }
         public string Designation { get; set; }
         public string Name { get; set; }
+        public int WalletsWalletId { get; set; }
+        public decimal WalletsAmount { get; set; }
+        public int WalletsUsersUserId { get; set; }
         public IEnumerable<ExchangesDTO> Exchanges { get; set; }
-        public IEnumerable<WalletsDTO> Wallets { get; set; }
     }
 
     public class CurrenciesMapper : MapperBase<Currencies, CurrenciesDTO>
@@ -26,8 +28,6 @@ namespace entities.apifinport.DtoModels
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
         private ExchangesMapper _exchangesMapper = new ExchangesMapper();
-        private WalletsMapper _walletsMapper = new WalletsMapper();
-        private BaseEntityMapper _baseEntityMapper = new BaseEntityMapper();
         public override Expression<Func<Currencies, CurrenciesDTO>> SelectorExpression
         {
             get
@@ -39,9 +39,11 @@ namespace entities.apifinport.DtoModels
                     Symbol = p.Symbol,
                     Designation = p.Designation,
                     Name = p.Name,
-                    Exchanges = p.Exchanges.AsQueryable().Select(this._exchangesMapper.SelectorExpression),
-                    Wallets = p.Wallets.AsQueryable().Select(this._walletsMapper.SelectorExpression)
-                })).MergeWith(this._baseEntityMapper.SelectorExpression);
+                    WalletsWalletId = p.Wallets != null ? p.Wallets.WalletId : default(int),
+                    WalletsAmount = p.Wallets != null ? p.Wallets.Amount : default(decimal),
+                    WalletsUsersUserId = p.Wallets != null && p.Wallets.Users != null ? p.Wallets.Users.UserId : default(int),
+                    Exchanges = p.Exchanges.AsQueryable().Select(this._exchangesMapper.SelectorExpression)
+                }));
             }
         }
 
@@ -52,7 +54,6 @@ namespace entities.apifinport.DtoModels
             model.Symbol = dto.Symbol;
             model.Designation = dto.Designation;
             model.Name = dto.Name;
-            this._baseEntityMapper.MapToModel(dto, model);
         }
     }
 }

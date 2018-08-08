@@ -5,11 +5,11 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using entities.apifinport.DtoModels.Infrastructure;
-using entities.apifinport.Models;
+using FinPort.Entities;
 
 namespace entities.apifinport.DtoModels
 {
-    public class UsersDTO : BaseEntityDTO
+    public class UsersDTO
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
@@ -18,9 +18,11 @@ namespace entities.apifinport.DtoModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Password { get; set; }
+        public decimal UserAmount { get; set; }
+        public string UserWalletSymbol { get; set; }
+        public string UserWalletDesignation { get; set; }
         public IEnumerable<UserExchangeTaxesDTO> UserExchangeTaxes { get; set; }
         public IEnumerable<UserOperationHistoriesDTO> UserOperationHistories { get; set; }
-        public IEnumerable<WalletsDTO> Wallets { get; set; }
     }
 
     public class UsersMapper : MapperBase<Users, UsersDTO>
@@ -29,8 +31,6 @@ namespace entities.apifinport.DtoModels
         ////ECC/ END CUSTOM CODE SECTION 
         private UserExchangeTaxesMapper _userExchangeTaxesMapper = new UserExchangeTaxesMapper();
         private UserOperationHistoriesMapper _userOperationHistoriesMapper = new UserOperationHistoriesMapper();
-        private WalletsMapper _walletsMapper = new WalletsMapper();
-        private BaseEntityMapper _baseEntityMapper = new BaseEntityMapper();
         public override Expression<Func<Users, UsersDTO>> SelectorExpression
         {
             get
@@ -44,10 +44,12 @@ namespace entities.apifinport.DtoModels
                     FirstName = p.FirstName,
                     LastName = p.LastName,
                     Password = p.Password,
+                    UserAmount = p.User != null ? p.User.Amount : default(decimal),
+                    UserWalletSymbol = p.User != null && p.User.Wallet != null ? p.User.Wallet.Symbol : default(string),
+                    UserWalletDesignation = p.User != null && p.User.Wallet != null ? p.User.Wallet.Designation : default(string),
                     UserExchangeTaxes = p.UserExchangeTaxes.AsQueryable().Select(this._userExchangeTaxesMapper.SelectorExpression),
-                    UserOperationHistories = p.UserOperationHistories.AsQueryable().Select(this._userOperationHistoriesMapper.SelectorExpression),
-                    Wallets = p.Wallets.AsQueryable().Select(this._walletsMapper.SelectorExpression)
-                })).MergeWith(this._baseEntityMapper.SelectorExpression);
+                    UserOperationHistories = p.UserOperationHistories.AsQueryable().Select(this._userOperationHistoriesMapper.SelectorExpression)
+                }));
             }
         }
 
@@ -60,7 +62,6 @@ namespace entities.apifinport.DtoModels
             model.FirstName = dto.FirstName;
             model.LastName = dto.LastName;
             model.Password = dto.Password;
-            this._baseEntityMapper.MapToModel(dto, model);
         }
     }
 }

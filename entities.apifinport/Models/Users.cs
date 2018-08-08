@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebApplication1.Models
+namespace FinPort.Entities.Models
 {
-    public partial class Users
+    public partial class Users : BaseEntity
     {
         public Users()
         {

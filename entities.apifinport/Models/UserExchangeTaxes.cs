@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebApplication1.Models
+namespace FinPort.Entities.Models
 {
     public partial class UserExchangeTaxes
     {
-        public int Id { get; set; }
+        public int UserExchangeTaxId { get; set; }
         public int UserId { get; set; }
         public int ExchangeTaxeId { get; set; }
 

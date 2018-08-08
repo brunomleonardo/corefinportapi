@@ -6,11 +6,21 @@ namespace WebApplication1.Models
 {
     public partial class FinPortDbContext : DbContext
     {
+        public FinPortDbContext()
+        {
+        }
+
+        public FinPortDbContext(DbContextOptions<FinPortDbContext> options)
+            : base(options)
+        {
+        }
+
         public virtual DbSet<Currencies> Currencies { get; set; }
         public virtual DbSet<ExchangeProducts> ExchangeProducts { get; set; }
         public virtual DbSet<Exchanges> Exchanges { get; set; }
         public virtual DbSet<ExchangeTaxes> ExchangeTaxes { get; set; }
         public virtual DbSet<MajorIndices> MajorIndices { get; set; }
+        public virtual DbSet<MarketProducts> MarketProducts { get; set; }
         public virtual DbSet<Markets> Markets { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<TechnicalValues> TechnicalValues { get; set; }
@@ -25,7 +35,7 @@ namespace WebApplication1.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=DESKTOP-FM8TQPH\SQLEXPRESS;Initial Catalog=FinPortDb;Integrated Security=True");
+                optionsBuilder.UseSqlServer("Server=DESKI90ACAD5\\SQLEXPRESSMVC;Initial Catalog=FinPortDb;Trusted_Connection=True;MultipleActiveResultSets=true");
             }
         }
 
@@ -136,10 +146,32 @@ namespace WebApplication1.Models
                 entity.Property(e => e.ModifiedOn)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.TechnicalValue)
+                    .WithMany(p => p.MajorIndices)
+                    .HasForeignKey(d => d.TechnicalValueId)
+                    .HasConstraintName("FK_MajorIndices_TechnicalValues");
+            });
+
+            modelBuilder.Entity<MarketProducts>(entity =>
+            {
+                entity.HasOne(d => d.Market)
+                    .WithMany(p => p.MarketProducts)
+                    .HasForeignKey(d => d.MarketId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MarketProducts_Markets");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.MarketProducts)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MarketProducts_Products");
             });
 
             modelBuilder.Entity<Markets>(entity =>
             {
+                entity.HasKey(e => e.MarketId);
+
                 entity.Property(e => e.CreatedOn)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
@@ -164,6 +196,11 @@ namespace WebApplication1.Models
                 entity.Property(e => e.ModifiedOn)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.TechnicalValue)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.TechnicalValueId)
+                    .HasConstraintName("FK_Products_TechnicalValues");
             });
 
             modelBuilder.Entity<TechnicalValues>(entity =>
@@ -205,6 +242,8 @@ namespace WebApplication1.Models
 
             modelBuilder.Entity<UserExchangeTaxes>(entity =>
             {
+                entity.HasKey(e => e.UserExchangeTaxId);
+
                 entity.HasOne(d => d.ExchangeTaxe)
                     .WithMany(p => p.UserExchangeTaxes)
                     .HasForeignKey(d => d.ExchangeTaxeId)
@@ -311,7 +350,7 @@ namespace WebApplication1.Models
             {
                 entity.HasKey(e => e.WalletId);
 
-                entity.Property(e => e.WalletId).ValueGeneratedOnAdd();
+                entity.Property(e => e.WalletId).ValueGeneratedNever();
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
@@ -329,11 +368,11 @@ namespace WebApplication1.Models
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.Wallet)
-                    .WithOne(p => p.Wallets)
-                    .HasForeignKey<Wallets>(d => d.WalletId)
+                entity.HasOne(d => d.Currency)
+                    .WithMany(p => p.Wallets)
+                    .HasForeignKey(d => d.CurrencyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Wallets_Currencies");
+                    .HasConstraintName("FK_Wallets_Currencies1");
             });
         }
     }

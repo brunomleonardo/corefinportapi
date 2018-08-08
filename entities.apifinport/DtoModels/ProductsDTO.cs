@@ -5,11 +5,11 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using entities.apifinport.DtoModels.Infrastructure;
-using entities.apifinport.Models;
+using FinPort.Entities;
 
 namespace entities.apifinport.DtoModels
 {
-    public class ProductsDTO : BaseEntityDTO
+    public class ProductsDTO
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
@@ -22,20 +22,20 @@ namespace entities.apifinport.DtoModels
         public string Industry { get; set; }
         public string MarketCap { get; set; }
         public string Href { get; set; }
-        public int ExchangeId { get; set; }
-        public string ExchangeDesignation { get; set; }
-        public string ExchangeSymbol { get; set; }
-        public int ExchangeCurrencyId { get; set; }
-        public string ExchangeCurrencySymbol { get; set; }
-        public string ExchangeCurrencyDesignation { get; set; }
-        public string ExchangeCurrencyName { get; set; }
+        public int TechnicalValueTechnicalValueId { get; set; }
+        public decimal? TechnicalValueLast { get; set; }
+        public IEnumerable<ExchangeProductsDTO> ExchangeProducts { get; set; }
+        public IEnumerable<MarketProductsDTO> MarketProducts { get; set; }
+        public IEnumerable<UserOperationHistoriesDTO> UserOperationHistories { get; set; }
     }
 
     public class ProductsMapper : MapperBase<Products, ProductsDTO>
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
-        private BaseEntityMapper _baseEntityMapper = new BaseEntityMapper();
+        private ExchangeProductsMapper _exchangeProductsMapper = new ExchangeProductsMapper();
+        private MarketProductsMapper _marketProductsMapper = new MarketProductsMapper();
+        private UserOperationHistoriesMapper _userOperationHistoriesMapper = new UserOperationHistoriesMapper();
         public override Expression<Func<Products, ProductsDTO>> SelectorExpression
         {
             get
@@ -53,14 +53,12 @@ namespace entities.apifinport.DtoModels
                     Industry = p.Industry,
                     MarketCap = p.MarketCap,
                     Href = p.Href,
-                    ExchangeDesignation = p.Exchange != null ? p.Exchange.Designation : default(string),
-                    ExchangeSymbol = p.Exchange != null ? p.Exchange.Symbol : default(string),
-                    ExchangeCurrencySymbol = p.Exchange != null && p.Exchange.Currency != null ? p.Exchange.Currency.Symbol : default(string),
-                    ExchangeCurrencyDesignation = p.Exchange != null && p.Exchange.Currency != null ? p.Exchange.Currency.Designation : default(string),
-                    ExchangeCurrencyName = p.Exchange != null && p.Exchange.Currency != null ? p.Exchange.Currency.Name : default(string),
-                    ExchangeCurrencyId = p.Exchange != null && p.Exchange.Currency != null ? p.Exchange.Currency.Id : default(int),
-                    ExchangeId = p.Exchange != null ? p.Exchange.Id : default(int),
-                })).MergeWith(this._baseEntityMapper.SelectorExpression);
+                    TechnicalValueTechnicalValueId = p.TechnicalValue != null ? p.TechnicalValue.TechnicalValueId : default(int),
+                    TechnicalValueLast = p.TechnicalValue != null ? p.TechnicalValue.Last : default(decimal?),
+                    ExchangeProducts = p.ExchangeProducts.AsQueryable().Select(this._exchangeProductsMapper.SelectorExpression),
+                    MarketProducts = p.MarketProducts.AsQueryable().Select(this._marketProductsMapper.SelectorExpression),
+                    UserOperationHistories = p.UserOperationHistories.AsQueryable().Select(this._userOperationHistoriesMapper.SelectorExpression)
+                }));
             }
         }
 
@@ -77,8 +75,6 @@ namespace entities.apifinport.DtoModels
             model.Industry = dto.Industry;
             model.MarketCap = dto.MarketCap;
             model.Href = dto.Href;
-            model.ExchangeId = dto.ExchangeId;
-            this._baseEntityMapper.MapToModel(dto, model);
         }
     }
 }

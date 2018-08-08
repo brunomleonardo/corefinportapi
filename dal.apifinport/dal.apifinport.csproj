@@ -11,8 +11,4 @@
     <PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.0.5690" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\entities.apifinport\entities.apifinport.csproj" />
-  </ItemGroup>
-
 </Project>

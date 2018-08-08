@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using entities.apifinport.DtoModels.Infrastructure;
-using entities.apifinport.Models;
+using FinPort.Entities;
 
 namespace entities.apifinport.DtoModels
 {
@@ -13,16 +13,18 @@ namespace entities.apifinport.DtoModels
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
-        public int Id { get; set; }
         public int UserId { get; set; }
         public int ExchangeTaxeId { get; set; }
         public decimal ExchangeTaxeTaxValue { get; set; }
+        public string ExchangeTaxeExchangeTaxDesignation { get; set; }
+        public string ExchangeTaxeExchangeTaxSymbol { get; set; }
     }
 
     public class UserExchangeTaxesMapper : MapperBase<UserExchangeTaxes, UserExchangeTaxesDTO>
     {
         ////BCC/ BEGIN CUSTOM CODE SECTION 
         ////ECC/ END CUSTOM CODE SECTION 
+
         public override Expression<Func<UserExchangeTaxes, UserExchangeTaxesDTO>> SelectorExpression
         {
             get
@@ -31,10 +33,11 @@ namespace entities.apifinport.DtoModels
                 {
                     ////BCC/ BEGIN CUSTOM CODE SECTION 
                     ////ECC/ END CUSTOM CODE SECTION 
-                    Id = p.Id,
                     UserId = p.UserId,
                     ExchangeTaxeId = p.ExchangeTaxeId,
                     ExchangeTaxeTaxValue = p.ExchangeTaxe != null ? p.ExchangeTaxe.TaxValue : default(decimal),
+                    ExchangeTaxeExchangeTaxDesignation = p.ExchangeTaxe != null && p.ExchangeTaxe.ExchangeTax != null ? p.ExchangeTaxe.ExchangeTax.Designation : default(string),
+                    ExchangeTaxeExchangeTaxSymbol = p.ExchangeTaxe != null && p.ExchangeTaxe.ExchangeTax != null ? p.ExchangeTaxe.ExchangeTax.Symbol : default(string)
                 }));
             }
         }
@@ -43,7 +46,6 @@ namespace entities.apifinport.DtoModels
         {
             ////BCC/ BEGIN CUSTOM CODE SECTION 
             ////ECC/ END CUSTOM CODE SECTION 
-            model.Id = dto.Id;
             model.UserId = dto.UserId;
             model.ExchangeTaxeId = dto.ExchangeTaxeId;
 
